@@ -1,0 +1,24 @@
+
+stages:
+- name: test1
+  parallel: true
+  stages:
+    - name: par1
+      jobName: par1
+    - name: par2
+      jobName: par2
+    - name: seq
+      stages: 
+        - name: seq1
+          jobName: seq1
+        - name: subParallel
+          parallel: true
+          stages:
+            - name: sub1
+              jobName: sub1
+            - name: sub2
+              jobName: sub2
+        - name: seq3
+          jobName: seq3 
+    - name: par4
+      jobName: par4

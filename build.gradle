@@ -1,0 +1,27 @@
+plugins {
+    id "groovy"
+}
+
+group = "ru.recursive"   // example: com.disney.dss.dpe
+version = "1.0.0" // example: 1.0.0
+
+repositories {
+    mavenCentral()
+}
+
+configurations.all {
+	resolutionStrategy {
+		eachDependency { DependencyResolveDetails details ->
+			if (details.requested.group == 'org.codehaus.groovy') {
+				details.useVersion('3.0.3')
+			}
+		}
+	}
+}
+
+dependencies {
+    implementation "org.codehaus.groovy:groovy-all:2.5.0"
+    testImplementation "com.lesfurets:jenkins-pipeline-unit:1.1"
+    testImplementation "junit:junit:4.12"
+	testImplementation "org.yaml:snakeyaml:1.17"
+}
